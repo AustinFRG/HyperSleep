@@ -1,0 +1,6 @@
+name: HyperSleep
+version: ${project.version}
+main: me.austinfrg.hypersleep.HyperSleep
+api-version: 1.16
+authors: [AustinFRG]
+description: Turns the time to day when one person sleeps
