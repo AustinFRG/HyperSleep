@@ -30,11 +30,22 @@ public class HyperSleep extends JavaPlugin implements Listener {
         World world = e.getPlayer().getWorld();
         if (world.getTime() >= 13000) {
             world.setTime(0);
-            world.setWeatherDuration(0);
+            world.setThundering(false);
+            world.setStorm(false);
+            e.setCancelled(Boolean.parseBoolean(this.getConfig().getString("stop-entering-bed")));
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString("time-changed-msg")).replace("%player%", player))));
         }
         else {
-            e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString("already-day-msg")).replace("%player%", player))));
+            if (world.hasStorm() || world.isThundering()) {
+                world.setTime(0);
+                world.setThundering(false);
+                world.setStorm(false);
+                e.setCancelled(Boolean.parseBoolean(this.getConfig().getString("stop-entering-bed")));
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString("weather-changed-msg")).replace("%player%", player))));
+            }
+            else {
+                e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString("already-day-msg")).replace("%player%", player))));
+            }
         }
     }
 }
