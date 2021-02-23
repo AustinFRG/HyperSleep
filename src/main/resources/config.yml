@@ -1,6 +1,15 @@
-time-changed-msg: " &e→ &2It's now day time, thanks to &a%player%&2 for sleeping!"
-weather-changed-msg: " &e→ &3The weather is now clear, thanks to &b%player%&3 for sleeping!"
+# Message sent when someone sleeps, and the time and weather is changing.
+time-changed-msg: " &e→ &2It's now turning day time, thanks to &a%player%&2 for sleeping!"
+weather-changed-msg: " &e→ &3The weather is now clearing up, thanks to &b%player%&3 for sleeping!"
 
+# Message sent when someone tries to sleep, but it's already day time and the weather is clear.
 already-day-msg: " &e→ &4It's already day time, &c%player%&4."
 
-stop-entering-bed: "true"
+# Change the time without players having to physically lay in the bed; players will not be counted as sleeping if this is set to true, so phantoms will still spawn.
+stop-entering-bed: false
+
+# How much the time changes every tick when sleeping.
+time-change-interval: "75"
+
+# How fast the time changes in ticks.
+time-change-speed: "1"
