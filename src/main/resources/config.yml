@@ -7,9 +7,3 @@ already-day-msg: " &e→ &4It's already day time, &c%player%&4."
 
 # Change the time without players having to physically lay in the bed; players will not be counted as sleeping if this is set to true, so phantoms will still spawn.
 stop-entering-bed: false
-
-# How much the time changes every tick when sleeping.
-time-change-interval: "75"
-
-# How fast the time changes in ticks.
-time-change-speed: "1"
