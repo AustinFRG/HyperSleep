@@ -28,7 +28,7 @@ public class HyperSleep extends JavaPlugin implements Listener {
     public void onPlayerSleep(PlayerBedEnterEvent e) {
         String player = e.getPlayer().getDisplayName();
         World world = e.getPlayer().getWorld();
-        if (world.getTime() >= 13000) {
+        if (world.getTime() >= 12500) {
             world.setTime(0);
             world.setThundering(false);
             world.setStorm(false);
