@@ -26,9 +26,10 @@ public class HyperSleep extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerSleep(PlayerBedEnterEvent e) {
+        if (!e.getPlayer().hasPermission("hypersleep.use") && this.getConfig().getBoolean("permissions-enabled")) return;
         String player = e.getPlayer().getDisplayName();
         World world = e.getPlayer().getWorld();
-        if (world.getTime() >= 12500 || world.hasStorm() || world.isThundering()) {
+        if (world.getTime() >= 12500 || world.hasStorm() || world.isThundering() || (e.getPlayer().hasPermission("hypersleep.bypass") && this.getConfig().getBoolean("permissions-enabled"))) {
             String reason;
             if (world.getTime() >= 12500) reason = "time";
             else reason = "weather";
@@ -37,8 +38,7 @@ public class HyperSleep extends JavaPlugin implements Listener {
             world.setStorm(false);
             e.setCancelled(this.getConfig().getBoolean("stop-entering-bed"));
             Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString(reason + "-changed-msg")).replace("%player%", player))));
-        }
-        else {
+        } else {
             e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(this.getConfig().getString("already-day-msg")).replace("%player%", player))));
         }
     }
