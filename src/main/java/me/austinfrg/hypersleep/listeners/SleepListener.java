@@ -1,8 +1,7 @@
 package me.austinfrg.hypersleep.listeners;
 
 import me.austinfrg.hypersleep.HyperSleep;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import me.austinfrg.hypersleep.utils.Chat;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,9 +30,9 @@ public class SleepListener implements Listener {
 			world.setThundering(false);
 			world.setStorm(false);
 			e.setCancelled(main.getConfig().getBoolean("stop-entering-bed"));
-			Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(main.getConfig().getString(reason + "-changed-msg")).replace("%player%", player))));
+			Chat.broadcast(Objects.requireNonNull(Objects.requireNonNull(main.getConfig().getString(reason + "-changed-msg")).replace("%player%", player)));
 		} else {
-			e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(Objects.requireNonNull(main.getConfig().getString("already-day-msg")).replace("%player%", player))));
+			Chat.tell(e.getPlayer(), Objects.requireNonNull(main.getConfig().getString("already-day-msg")).replace("%player%", player));
 		}
 	}
 
