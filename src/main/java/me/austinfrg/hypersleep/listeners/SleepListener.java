@@ -23,9 +23,7 @@ public class SleepListener implements Listener {
 		String player = e.getPlayer().getDisplayName();
 		World world = e.getPlayer().getWorld();
 		if (world.getTime() >= 12500 || world.hasStorm() || world.isThundering() || (e.getPlayer().hasPermission("hypersleep.bypass") && main.getConfig().getBoolean("permissions-enabled"))) {
-			String reason;
-			if (world.getTime() >= 12500) reason = "time";
-			else reason = "weather";
+			String reason = (world.getTime() >= 12500) ? "time" : "weather";
 			world.setTime(0);
 			world.setThundering(false);
 			world.setStorm(false);
