@@ -40,21 +40,6 @@ public class Chat {
 			toWhom.sendMessage(colorize(message));
 	}
 
-	/**
-	 * Sends a clickable message to a player that copies text when clicked.
-	 *
-	 * @param message The clickable message!
-	 * @param copyText The text that can be copied
-	 * @param player  player to send to.
-	 */
-	public static void sendCopyMessage(Player player, String message, String copyText) {
-		TextComponent component = new TextComponent(TextComponent.fromLegacyText(colorize(message)));
-		component.setClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, copyText));
-		component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Click to Copy")));
-
-		player.spigot().sendMessage(component);
-	}
-
 	public static void broadcast(String message) {
 		Bukkit.broadcastMessage(colorize(message));
 	}
